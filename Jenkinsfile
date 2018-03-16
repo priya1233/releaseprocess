@@ -10,13 +10,13 @@ node {
    // **       in the global configuration.
    //def mvnHome = tool 'M3'
    //sh 'mvn --version'
-   sh 'echo checkout sucessfull'
+   shell ('echo checkout sucessful')
 
    // Mark the code build 'stage'....
    stage 'Build'
    // Run the maven build
-   sh "${mvnHome}/bin/mvn clean install"
-   sh 'echo building.............'
-   sh 'mvn validate'
+   shell ('cd ../releaseparent')
+   shell ('echo building.............')
+   shell ('mvn validate')
    
 }

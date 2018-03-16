@@ -11,7 +11,7 @@
 	</parent>
 
 	<artifactId>apptwo</artifactId>
-	<version>${apptwo.version}</version>
+<!-- 	<version>${apptwo.version}</version>  -->
 	<packaging>jar</packaging>
 
 	<name>apptwo</name>
@@ -66,9 +66,17 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${spring-boot.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
-	</build>
 
+	</build>
 
 </project>

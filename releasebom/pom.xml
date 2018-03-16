@@ -2,22 +2,27 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.ibm.dip.relprocess</groupId>
+	<parent>
+		<groupId>com.ibm.dip.relprocess</groupId>
+		<artifactId>releaseparent</artifactId>
+ 		<version>${revision}</version>
+		<relativePath>../releaseparent</relativePath>
+	</parent>
+
 	<artifactId>releasebom</artifactId>
-	<version>${revision}</version>
 	<packaging>pom</packaging>
 	<name>releasebom</name>
 
 	<properties>
 
-		<revision>18.03.001</revision>
-
+	<!--  -->
+		<release.versionRange>[1.0,${revision}]</release.versionRange>
 		<!-- Versions of all other components to be declared here -->
-		<projectmodel.version>18.03.001</projectmodel.version>
-		<projectinterfaces.version>18.03.001</projectinterfaces.version>
-		<appone.version>18.03.001</appone.version>
-		<apptwo.version>18.03.001</apptwo.version>
-		<appthree.version>18.03.001</appthree.version>
+		<projectmodel.version>${release.versionRange}</projectmodel.version>
+		<projectinterfaces.version>${release.versionRange}</projectinterfaces.version>
+		<appone.version>${release.versionRange}</appone.version>
+		<apptwo.version>${release.versionRange}</apptwo.version>
+		<appthree.version>${release.versionRange}</appthree.version>
 
 		<!-- common variables -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -33,7 +38,7 @@
 		<spring-cloud.version>Edgware.SR2</spring-cloud.version>
 
 	</properties>
-
+	
 	<distributionManagement>
 		<snapshotRepository>
 			<id>nexus-snapshots</id>
@@ -98,33 +103,5 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>flatten-maven-plugin</artifactId>
-				<configuration>
-				</configuration>
-				<executions>
-					<execution>
-						<id>flatten</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>flatten</goal>
-						</goals>
-					</execution>
-
-					<execution>
-						<id>flatten.clean</id>
-						<phase>clean</phase>
-						<goals>
-							<goal>clean</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
 
 </project>

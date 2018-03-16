@@ -1,0 +1,93 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.ibm.dip.relprocess</groupId>
+	<artifactId>releaseparent</artifactId>
+	<version>${revision}</version>
+	<packaging>pom</packaging>
+	<name>releaseparent</name>
+
+	<properties>
+ 		<revision>1.00.005</revision>  
+	</properties>
+
+	<scm>
+		<connection>scm:git:https://github.com/tambre/releaseprocess.git</connection>
+		<tag>HEAD</tag>
+		<url>https://github.com/tambre/releaseprocess.git</url>
+	</scm>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+		<repository>
+			<id>nexus-releases</id>
+			<url>http://localhost:8081/nexus/content/repositories/releases/</url>
+		</repository>
+	</distributionManagement>
+
+	<modules>
+		<module>../appone</module>
+		<module>../apptwo</module>
+		<module>../appthree</module>
+		<module>../projectmodel</module>
+		<module>../projectinterfaces</module>
+		<module>../releasemodule</module>
+		<module>../releasebom</module>
+	</modules>
+
+	<build>
+		<!-- <finalName>${project.artifactId}-${project.version}.${buildNumber}</finalName> -->
+
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>flatten-maven-plugin</artifactId>
+				<configuration>
+					<flattenMode>bom</flattenMode>
+					<outputDirectory>${project.basedir}/target</outputDirectory>
+					<flattenedPomFilename>flattened-pom.xml</flattenedPomFilename>
+				</configuration>
+				<executions>
+					<execution>
+						<id>flatten</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>flatten</goal>
+						</goals>
+					</execution>
+
+					<execution>
+						<id>flatten.clean</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<includes>
+						<include>com.ibm.dip.relprocess:*</include>
+					</includes>
+				</configuration>
+			</plugin>
+
+			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>buildnumber-maven-plugin</artifactId> 
+				<version>1.4</version> <executions> <execution> <phase>validate</phase> <goals> 
+				<goal>create</goal> </goals> </execution> </executions> <configuration> <format>{0,number}</format> 
+				<items> <item>buildNumber</item> </items> <doCheck>false</doCheck> <doUpdate>false</doUpdate> 
+				<revisionOnScmFailure>unknownbuild</revisionOnScmFailure> </configuration> 
+				</plugin> -->
+
+		</plugins>
+	</build>
+</project>

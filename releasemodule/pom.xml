@@ -2,26 +2,21 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.ibm.dip.relprocess</groupId>
-	<artifactId>releasemodule</artifactId>
-	<version>18.03.000-SNAPSHOT</version>
-	<packaging>pom</packaging>
+	<parent>
+		<groupId>com.ibm.dip.relprocess</groupId>
+		<artifactId>releasebom</artifactId>
+		<version>${revision}</version>
+		<relativePath>../releasebom</relativePath>
+	</parent>
 
+	<artifactId>releasemodule</artifactId>
+	<packaging>pom</packaging>
 	<name>releasemodule</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
-	<modules>
-		<module>../projectinterfaces</module>
-		<module>../appone</module>
-		<module>../projectmodel</module>
-		<module>../apptwo</module>
-		<module>../appthree</module>
- 		<module>../releasebom</module>  
-	</modules>
-	
 	<distributionManagement>
 		<snapshotRepository>
 			<id>nexus-snapshots</id>
@@ -31,5 +26,57 @@
 			<id>nexus-releases</id>
 			<url>http://localhost:8081/nexus/content/repositories/releases/</url>
 		</repository>
-	</distributionManagement>	
+	</distributionManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.ibm.dip.relprocess</groupId>
+			<artifactId>projectmodel</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.ibm.dip.relprocess</groupId>
+			<artifactId>projectinterfaces</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.ibm.dip.relprocess</groupId>
+			<artifactId>appone</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.ibm.dip.relprocess</groupId>
+			<artifactId>apptwo</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.ibm.dip.relprocess</groupId>
+			<artifactId>appthree</artifactId>
+		</dependency>
+	</dependencies>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>3.1.0</version>
+				<configuration>
+					<descriptors>
+						<descriptor>assembly.xml</descriptor>
+					</descriptors>
+				</configuration>
+
+				<executions>
+					<execution>
+						<id>make-assembly</id> 
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>

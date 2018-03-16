@@ -11,7 +11,7 @@
 	</parent>
 
 	<artifactId>appone</artifactId>
-	<version>${appone.version}</version>
+<!-- 	<version>${appone.version}</version>  -->
 	<packaging>jar</packaging>
 	<name>appone</name>
 	<description>app one</description>

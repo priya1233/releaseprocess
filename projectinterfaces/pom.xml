@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>projectinterfaces</artifactId>
-	<version>${projectinterfaces.version}</version>
+<!-- 	<version>${projectinterfaces.version}</version>  -->
 	<packaging>jar</packaging>
 
 	<name>projectinterfaces</name>

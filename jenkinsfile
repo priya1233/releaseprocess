@@ -17,4 +17,5 @@ node {
    sh "${mvnHome}/bin/mvn clean install"
    sh 'echo building.............'
    sh 'mvn validate'
+   
 }

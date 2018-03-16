@@ -9,7 +9,8 @@ node {
    // ** NOTE: This 'M3' maven tool must be configured
    // **       in the global configuration.
    //def mvnHome = tool 'M3'
-   sh 'mvn --version'
+   //sh 'mvn --version'
+   sh 'echo checkout sucessfull'
 
    // Mark the code build 'stage'....
    stage 'Build'

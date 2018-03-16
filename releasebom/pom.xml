@@ -1,0 +1,130 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.ibm.dip.relprocess</groupId>
+	<artifactId>releasebom</artifactId>
+	<version>${revision}</version>
+	<packaging>pom</packaging>
+	<name>releasebom</name>
+
+	<properties>
+
+		<revision>18.03.001</revision>
+
+		<!-- Versions of all other components to be declared here -->
+		<projectmodel.version>18.03.001</projectmodel.version>
+		<projectinterfaces.version>18.03.001</projectinterfaces.version>
+		<appone.version>18.03.001</appone.version>
+		<apptwo.version>18.03.001</apptwo.version>
+		<appthree.version>18.03.001</appthree.version>
+
+		<!-- common variables -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+
+		<!-- All external dependency versions here -->
+		<junit.version>3.8.1</junit.version>
+		<commons-collections.version>3.2.2</commons-collections.version>
+		<commons-pool.version>1.6</commons-pool.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring-boot.version>2.0.0.RELEASE</spring-boot.version>
+		<spring-cloud.version>Edgware.SR2</spring-cloud.version>
+
+	</properties>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+		<repository>
+			<id>nexus-releases</id>
+			<url>http://localhost:8081/nexus/content/repositories/releases/</url>
+		</repository>
+	</distributionManagement>
+
+	<dependencyManagement>
+		<dependencies>
+
+			<dependency>
+				<groupId>com.ibm.dip.relprocess</groupId>
+				<artifactId>projectmodel</artifactId>
+				<version>${projectmodel.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.ibm.dip.relprocess</groupId>
+				<artifactId>projectinterfaces</artifactId>
+				<version>${projectinterfaces.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.ibm.dip.relprocess</groupId>
+				<artifactId>appone</artifactId>
+				<version>${appone.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.ibm.dip.relprocess</groupId>
+				<artifactId>apptwo</artifactId>
+				<version>${apptwo.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.ibm.dip.relprocess</groupId>
+				<artifactId>appthree</artifactId>
+				<version>${appthree.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-collections</groupId>
+				<artifactId>commons-collections</artifactId>
+				<version>${commons-collections.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-pool</groupId>
+				<artifactId>commons-pool</artifactId>
+				<version>${commons-pool.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>flatten-maven-plugin</artifactId>
+				<configuration>
+				</configuration>
+				<executions>
+					<execution>
+						<id>flatten</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>flatten</goal>
+						</goals>
+					</execution>
+
+					<execution>
+						<id>flatten.clean</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

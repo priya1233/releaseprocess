@@ -1,0 +1,35 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.ibm.dip.relprocess</groupId>
+	<artifactId>releasemodule</artifactId>
+	<version>18.03.000-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>releasemodule</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<modules>
+		<module>../projectinterfaces</module>
+		<module>../appone</module>
+		<module>../projectmodel</module>
+		<module>../apptwo</module>
+		<module>../appthree</module>
+ 		<module>../releasebom</module>  
+	</modules>
+	
+	<distributionManagement>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+		<repository>
+			<id>nexus-releases</id>
+			<url>http://localhost:8081/nexus/content/repositories/releases/</url>
+		</repository>
+	</distributionManagement>	
+</project>

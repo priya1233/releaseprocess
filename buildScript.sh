@@ -1,4 +1,4 @@
-#!C:\Program Files\Git\bin\sh.exe -xe
+#!/bin/sh
 echo "Checkout done"
 cd '${WORKSPACE}\releaseparent'
 mvn validate
